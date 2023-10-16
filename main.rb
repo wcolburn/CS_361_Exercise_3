@@ -3,27 +3,42 @@ class StudentSchedule
     @quarter = quarter
     @year = year
     @classes = classes
+    @num_classes = @classes.length
   end
+
+  def self.num_classes
+    @num_classes
+  end
+
+  def remove(course)
+    @classes.each do |i|
+      if course[i] == course
+        @classes.delete_at(i)
+      end
+    end
+  end
+
+  def add(course)
+    @classes.push(course)
+  end
+
 end
+
 
 class Student
   MAX_COURSES = 5
 
-  def get_course_list(schedule, quarter_id)
-    quarter = schedule.quarter[quarter_id]
-    quarter.course_list
+  def initialize
+    @schedule = StudentSchedule.new(1, 2023, [])
   end
 
-  def remove_from_schedule(course, schedule, quarter_id)
-    course_list = get_course_list(schedule, quarter_id)
-    course_list.remove(course)
+  def remove_from_schedule(course)
+    @schedule.remove(course)
   end
 
-  def add_to_schedule(course, schedule, quarter_id)
-    course_list = get_course_list(schedule, quarter_id)
-    max_courses = course_list.maximum_number_of_courses
-    if max_courses < MAX_COURSES
-      course_list.add(course)
+  def add_to_schedule(course)
+    if @schedule.num_classes < MAX_COURSES
+      @schedule.add(course)
     end
   end
 
