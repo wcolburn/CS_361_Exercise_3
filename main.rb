@@ -1,3 +1,9 @@
+class Schedule
+  def initialize(quarter_id)
+    @quarter_id = quarter_id
+  end
+end
+
 class Student
   MAX_COURSES = 5
 
@@ -5,6 +11,7 @@ class Student
     quarter = schedule.quarter[quarter_id]
     quarter.course_list
   end
+
   def remove_from_schedule(course, schedule, quarter_id)
     course_list = get_course_list(schedule, quarter_id)
     course_list.remove(course)
@@ -17,4 +24,5 @@ class Student
       course_list.add(course)
     end
   end
+
 end
