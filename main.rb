@@ -1,6 +1,8 @@
-class Schedule
-  def initialize(quarter_id)
-    @quarter_id = quarter_id
+class StudentSchedule
+  def initialize(quarter, classes, year)
+    @quarter = quarter
+    @year = year
+    @classes = classes
   end
 end
 
